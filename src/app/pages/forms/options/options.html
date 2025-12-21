@@ -1,0 +1,167 @@
+<ng-template #library_forms let-model let-library_on_loading="library_on_loading" let-library_show_slug="library_show_slug" let-library_submiting="library_submiting" let-library_on_submit="library_on_submit">
+    <div class="library__frms">
+        <form name="form" autocomplete="off">
+            @if (library_errors_msg) {<div class="library__notes"><i class="fi fi-rr-triangle-warning"></i> {{library_errors_msg}}</div>}
+            <!-- // -->
+            @if(library_data_record.key == 'msg'){ 
+                <div class="library__blocks lib-wbtm">
+                    <div class="library__block">
+                        <div class="library__block-t"><span><img [src]="'/img/library_french.svg'" alt="Library"> French</span></div>
+                        <div class="library__block-b">
+                            <div class="library__frms-grp">
+                                <input name="title_fr" id="title_fr" [(ngModel)]="model.value.title_fr" placeholder="{{ 'Valeur' }}" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="library__block">
+                        <div class="library__block-t"><span><img [src]="'/img/library_english.svg'" alt="Library"> English</span></div>
+                        <div class="library__block-b">
+                            <div class="library__frms-grp">
+                                <input name="title_en" id="title_en" [(ngModel)]="model.value.title_en" placeholder="{{ 'Valeur' }}" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="library__block">
+                        <div class="library__block-t"><span><img [src]="'/img/library_arabic.svg'" alt="Library"> Arabic</span></div>
+                        <div class="library__block-b">
+                            <div class="library__frms-grp lib-ar">
+                                <input name="title_ar" id="title_ar" [(ngModel)]="model.value.title_ar" placeholder="{{ 'الرسالة' }}" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- // -->
+            @if(library_data_record.key == 'keywords'){ 
+                <div class="library__blocks lib-wbtm">
+                    <div class="library__block">
+                        <div class="library__block-t"><span><img [src]="'/img/library_french.svg'" alt="Library"> French</span></div>
+                        <div class="library__block-b">
+                            <div class="library__frms-grp library_editor">
+                                <textarea name="title_fr" id="title_fr" placeholder="{{ 'SEO - Keywords' }}" [(ngModel)]="model.value.title_fr" cols="70" rows="30"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="library__block">
+                        <div class="library__block-t"><span><img [src]="'/img/library_english.svg'" alt="Library"> English</span></div>
+                        <div class="library__block-b">
+                            <div class="library__frms-grp library_editor">
+                                <textarea name="title_en" id="title_en" placeholder="{{ 'SEO - Keywords' }}" [(ngModel)]="model.value.title_en" cols="70" rows="30"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="library__block">
+                        <div class="library__block-t"><span><img [src]="'/img/library_arabic.svg'" alt="Library"> Arabic</span></div>
+                        <div class="library__block-b">
+                            <div class="library__frms-grp library_editor lib-ar">
+                                <textarea name="title_ar" id="title_ar" placeholder="{{ 'SEO - المفاتيح بالعربية' }}" [(ngModel)]="model.value.title_ar" cols="70" rows="30"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- // -->
+            @if(library_data_record.key == 'description'){ 
+                <div class="library__blocks lib-wbtm">
+                    <div class="library__block">
+                        <div class="library__block-t"><span><img [src]="'/img/library_french.svg'" alt="Library"> French</span></div>
+                        <div class="library__block-b">
+                            <div class="library__frms-grp library_editor">
+                                <textarea name="title_fr" id="title_fr" placeholder="{{ 'SEO - Description' }}" [(ngModel)]="model.value.title_fr" cols="70" rows="30"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="library__block">
+                        <div class="library__block-t"><span><img [src]="'/img/library_english.svg'" alt="Library"> English</span></div>
+                        <div class="library__block-b">
+                            <div class="library__frms-grp library_editor">
+                                <textarea name="title_en" id="title_en" placeholder="{{ 'SEO - Description' }}" [(ngModel)]="model.value.title_en" cols="70" rows="30"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="library__block">
+                        <div class="library__block-t"><span><img [src]="'/img/library_arabic.svg'" alt="Library"> Arabic</span></div>
+                        <div class="library__block-b">
+                            <div class="library__frms-grp library_editor lib-ar">
+                                <textarea name="title_ar" id="title_ar" placeholder="{{ 'SEO - التعريف بالعربية' }}" [(ngModel)]="model.value.title_ar" cols="70" rows="30"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- // -->
+            @if(library_data_record.key == 'points'){ 
+                <div class="library__frms-grp">
+                    <label for="add_reviews">{{ 'Adding Review' }}</label>
+                    <input name="add_reviews" id="add_reviews" [(ngModel)]="model.value.add_reviews" placeholder="{{ 'Valeur' }}" type="text">
+                </div>
+                <div class="library__frms-grp">
+                    <label for="add_suggest">{{ 'Suggest Correction' }}</label>
+                    <input name="add_suggest" id="add_suggest" [(ngModel)]="model.value.add_suggest" placeholder="{{ 'Valeur' }}" type="text">
+                </div>
+                <div class="library__frms-grp">
+                    <label for="add_problem">{{ 'Reporting Problem' }}</label>
+                    <input name="add_problem" id="add_problem" [(ngModel)]="model.value.add_problem" placeholder="{{ 'Valeur' }}" type="text">
+                </div>
+                <div class="library__frms-grp">
+                    <label for="report_link">{{ 'Reporting Download Link' }}</label>
+                    <input name="report_link" id="report_link" [(ngModel)]="model.value.report_link" placeholder="{{ 'Valeur' }}" type="text">
+                </div>
+            }
+            <!-- // -->
+            <div class="library__frms-acts">
+                <button [disabled]="library_load_btns || library_valid()" (click)="library_update_record()" id="library_form_sbmt" type="submit">
+                    <span>@if (!library_load_btns) { <i class="fi fi-rr-check"></i> Update } @else {<i class="fi fi-rr-rotate-right lib-spin"></i>}</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+<!-- // -->
+<ng-template #library_temp_edit let-modal>
+    <div class="library__mdl-h">
+        <h4>
+            @if(library_data_record.key == 'msg'){ <i class="fi fi-rr-message-arrow-up"></i> <strong>{{ 'Top message' }}</strong> }
+            @if(library_data_record.key == 'points'){ <i class="fi fi-rr-coins"></i> <strong>{{ "Points" }}</strong> }
+            @if(library_data_record.key == 'keywords'){ <i class="fi fi-rr-tags"></i> <strong>{{ 'SEO - Keywords' }}</strong> }
+            @if(library_data_record.key == 'description'){ <i class="fi fi-rr-browser"></i> <strong>{{ 'SEO - Description' }}</strong> }
+        </h4>
+        <button class="library__btns lib-circle lib-close" (click)="modal.dismiss()"><i class="fi fi-rr-cross-small"></i></button>
+    </div>
+    <div class="library__mdl-b">
+        <ng-container *ngTemplateOutlet="library_forms; context: { $implicit: library_edit_record,
+            library_on_loading: library_load_btns,
+            library_show_slug: true,
+            library_submiting: 'Update',
+            library_on_submit: library_update_btn.bind(this)
+        }"> </ng-container>
+    </div>
+</ng-template>
+<!-- // -->
+<div class="library__main">
+    <div class="library__heads">
+        <div class="library__heads-t">
+            <h1><i class="fi-rr-settings-sliders"></i> {{ 'Options' }}</h1>
+        </div>
+    </div>
+    @if (!library_loading) {
+        <div>
+            <div class="library__cntns">
+                <div class="library__boxes lib-four">
+                    @for (record of library_records; track record.id) {
+                        @if(record.key != 'books_count'){
+                            <div class="library__box" (click)="library_modal_edit(library_temp_edit, record, $index)">
+                                @if(record.key == 'msg'){ <i class="fi fi-rr-message-arrow-up"></i> <span>{{ 'Top message' }}</span> }
+                                @if(record.key == 'points'){ <i class="fi fi-rr-coins"></i> <span>{{ "Points" }}</span> }
+                                @if(record.key == 'keywords'){ <i class="fi fi-rr-tags"></i> <span>{{ 'SEO - Keywords' }}</span> }
+                                @if(record.key == 'description'){ <i class="fi fi-rr-browser"></i> <span>{{ 'SEO - Description' }}</span> }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    } @else {
+        <div class="library__load"><i class="fi fi-rr-rotate-right lib-spin"></i></div>
+    }
+</div>

@@ -1,0 +1,27 @@
+@if (!library_loads) {
+  @if (library_total > 0) {
+    <div>
+        <div class="library__cntns">
+          <ng-content></ng-content>
+        </div>
+        <div class="library__cntns-ftr">
+          <div class="library__cntns-ftr-nms">
+            <span><b>{{ library_total }}</b> Total - <b>{{ library_page }}</b> On <b>{{ library_pages }}</b> Pages</span>
+          </div>
+          <div class="library__cntns-ftr-ars">
+            <button (click)="library_paginate.emit('first')" [disabled]="library_page === 1"><i class="fi fi-rr-angle-double-small-left"></i></button>
+            <button (click)="library_paginate.emit('previous')" [disabled]="library_page <= 1"><i class="fi fi-rr-angle-small-left"></i></button>
+            <button (click)="library_paginate.emit('next')" [disabled]="library_page >= library_pages"><i class="fi fi-rr-angle-small-right"></i></button>
+            <button (click)="library_paginate.emit('last')" [disabled]="library_page === library_pages"><i class="fi fi-rr-angle-double-small-right"></i></button>
+          </div>
+        </div>
+    </div>
+  } @else {
+    <div class="library__nodata lib-grid lib-only">
+      <i class="fi fi-rr-duration-alt"></i>
+      <p>No results found</p>
+    </div>
+  }
+} @else {
+  <div class="library__load"><i class="fi fi-rr-rotate-right lib-spin"></i></div>
+}

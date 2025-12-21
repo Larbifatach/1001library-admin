@@ -1,0 +1,14 @@
+@if (library_error) {<div class="library__notes"><i class="fi fi-rr-triangle-warning"></i> {{library_error}}</div>}
+<div class="library__frms-grp lib-upload {{library_class}}">
+  <label [for]="library_id"><i [class]="library_icon"></i></label>
+  <input [id]="library_id" type="file" accept="image/*" (change)="library_onchng($event)" multiple />
+  <div class="library__multis">
+    @for (img of library_prev_urls; track img.local; let i = $index) {
+      <div class="library__multi">
+        <picture [style.background-color]="library_bg" style="background-image: url({{img.local}});"></picture>
+        @if(library_show_rmv){ <span (click)="library_remove(i)"><i class="fi fi-rr-trash"></i></span> }
+        @if(library_loading[i]){ <small>Téléchargement...</small> }
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,16 @@
+/*- Library:: Table -------*/
+.library__tbls {
+  .library__tbls-col-0 { flex-basis: 10%; }
+  .library__tbls-col-1 { flex-basis: 15%; }
+  .library__tbls-col-2 { flex-basis: 40%; }
+  .library__tbls-col-3 { flex-basis: 40%; }
+  .library__tbls-col-4 { flex-basis: 15%; }
+  .library__tbls-col-5 { flex-basis: 20%; }
+}
+/*- Library:: Others -------*/
+.library__heads .library__heads-fs .library__heads-f .library__frms-grp input, .library__heads .library__heads-fs .library__heads-f .library__frms-grp select {
+  width: 160px;
+}
+.library__frms-grp.lib-id input{
+  width: 90px !important;
+}

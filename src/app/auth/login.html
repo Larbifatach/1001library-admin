@@ -1,0 +1,47 @@
+@if (library__frm_show) {
+  <div class='library__auth-cs'>
+    <div class='library__auth-c'>
+      <div class="library__auth-l">
+        <img src="/img/library-logo.png" alt="Library - Admin">
+
+      </div>
+      <div class="library__auth">
+        <div class="library__auth-f">
+          <form [formGroup]="library__frm" (ngSubmit)="library_form_submit()">
+            <h1>Login your account</h1>
+            @if (library__show_error) {
+              <div class="library__auth-fm">
+                <i class="fi fi-rr-triangle-warning"></i> Incorrect email address or password
+              </div>
+            }
+            <!-- // -->
+            <div class="library__auth-fg">
+              <span><i class="fi fi-rr-envelope"></i></span>
+              <input id="email" placeholder="E-mail" type="email" formControlName="email">
+            </div>
+            <!-- // -->
+            <div class="library__auth-fg">
+              <span><i class="fi fi-rr-lock"></i></span>
+              <i class="library__auth-sh fi" [ngClass]="library_show_pass ? 'fi-rr-eye' : 'fi-rr-eye-crossed'" (click)="library_show_hide_pass()"></i>
+              <input id="password" placeholder="Password" [type]="library_show_pass ? 'text' : 'password'" formControlName="password">
+            </div>
+            <!-- // -->
+            <div class="library__auth-fga">
+              <button id="submit" [disabled]="library__frm.invalid || library__loading_btns" type="submit">
+                <span>
+                  @if (library__loading_btns) {
+                    <i class="fi fi-rr-rotate-right lib-spin"></i>
+                  } @else {
+                    Login
+                  }
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="library__auth-bg"></div>
+      </div>
+      <p>1001 Library © 2026, All rights reserved</p>
+    </div>
+  </div>
+}

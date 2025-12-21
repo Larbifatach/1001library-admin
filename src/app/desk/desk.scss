@@ -1,0 +1,13 @@
+.library__desk{
+    background-color: #1e1e2b;
+    height: 100vh;
+    padding: 1.5em;
+    border-left: 1px solid #474d79;
+    z-index: 1;
+    position: relative;
+    overflow-y: auto;
+}
+.library__desk.library__auth{
+    padding: 0;
+    border-radius: 0;
+}

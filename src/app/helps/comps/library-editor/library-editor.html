@@ -1,0 +1,6 @@
+<div class="library-editor-toolbar">
+  <ngx-editor-menu [editor]="library_editor" [toolbar]="library_toolbar"></ngx-editor-menu>
+  <button type="button" class="lib-btn" (click)="library_file_trigger(sabim_file_input)"><i class="fi fi-rr-add-image"></i></button>
+  <input #sabim_file_input type="file" hidden (change)="library_file_selected($event)" accept="image/*">
+</div>
+<ngx-editor [editor]="library_editor" [(ngModel)]="library_content" (ngModelChange)="library_changed.emit($event)"></ngx-editor>

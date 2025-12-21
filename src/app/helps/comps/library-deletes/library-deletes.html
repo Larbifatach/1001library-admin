@@ -1,0 +1,15 @@
+<div class="library__mdl-h"><h4><i class="fi fi-rr-trash"></i> {{ library_title }}: <strong>{{ library_name }}</strong></h4><button class="library__btns lib-circle lib-close" (click)="onClose()"><i class="fi fi-rr-cross-small"></i></button></div>
+<div class="library__mdl-b">
+  @if (library_error) { <div class="library__notes"><i class="fi fi-rr-triangle-warning"></i> {{library_error}}</div> }
+  <div class="library__msgs">
+    <i class="fi fi-rr-exclamation"></i>
+    <p [innerHTML]="library_text"></p>
+  </div>
+  <div class="library__flex">
+    <button class="library__btns lib-width" type="button" (click)="onClose()">No</button>
+    <button class="library__btns lib-width lib-bad" type="button" [disabled]="library_load" (click)="onConfirm()">
+      <span>@if (!library_load) { Yes } @else { <i class="fi fi-rr-rotate-right lib-spin"></i> }</span>
+    </button>
+  </div>
+</div>
+

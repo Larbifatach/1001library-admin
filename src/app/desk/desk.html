@@ -1,0 +1,4 @@
+<app-sidebar *ngIf="library_show_them"></app-sidebar>
+<div class="library__desk {{library_show_them ? '' : 'library__auth'}}">
+    <router-outlet></router-outlet>
+</div>

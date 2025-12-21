@@ -1,0 +1,12 @@
+<div>
+  <div class="library__frms-clr" (click)="library_tgle()" [style.background]="library_color"> </div>
+  @if(library_show){ 
+    <div class="library__frms-clib-p" style="margin-top: 10px;">
+      @if (library_w_colors) {
+        <color-block [color]="library_color" [colors]="library_colors" (onChangeComplete)="library_onclr($event)"> </color-block>
+      } @else {
+        <color-block [color]="library_color" (onChangeComplete)="library_onclr($event)"> </color-block>
+      }
+    </div>
+  }
+</div>

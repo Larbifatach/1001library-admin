@@ -1,0 +1,212 @@
+// Library:: Sidebar
+.library__sbar {
+  background-color: #2f3141;
+  width: 245px;
+  position: fixed;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  top: 0;
+  .library__sbar-h {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px 20px;
+    align-items: center;
+    border-bottom: 1px solid #474d79;
+  }
+  .library__sbar-l img {
+    width: 140px;
+    transition: unset;
+    position: relative;
+  }
+  .library__sbar-m {
+    list-style: none;
+    padding: 8px 20px;
+    gap: 6px;
+    display: grid;
+    &.library__sbar-m-Side {
+      margin-left: 25px;
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+    h3 {
+      font-size: 16px;
+      font-variant: all-petite-caps;
+      font-weight: bold;
+      color: #84b4ff;
+      letter-spacing: 1px;
+      margin: 0 0 2px;
+    }
+    > li,
+    > a {
+      display: flex;
+      align-items: center;
+      color: #a4a5bd;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s ease-in;
+      font-weight: 500;
+      &:hover,
+      &.active {
+        color: #fff;
+        font-weight: bold;
+      }
+      i {
+        font-size: 16px;
+        width: 23px;
+        text-align: center;
+        margin-right: 2px;
+        display: flex;
+      }
+      span {
+        top: 1px;
+        position: relative;
+      }
+      b {
+        position: absolute;
+        left: 33px;
+        top: 0;
+        background: #eaeaea;
+        border-radius: 3px;
+        padding: 3px 9px 1px 7px;
+        color: #fff;
+        display: none;
+        width: 70%;
+        height: 25px;
+        z-index: 0;
+      }
+    }
+  }
+  .library__sbar-ms {
+    height: calc(100% - 135px);
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 6px 0 10px;
+  }
+  .library__sbar-fs {
+    text-align: center;
+    display: block;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+  .library__sbar-f {
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #474d79;
+    img {
+      border-radius: 100%;
+      width: 37px;
+      height: 37px;
+      background-color: #d3d3d3;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+    button {
+      line-height: 15px;
+      background-color: #2e73cc;
+      color: #fff;
+      font-size: 16px;
+      width: 37px;
+      height: 37px;
+      position: relative;
+      span {
+        background-color: #f94d4d;
+        position: absolute;
+        bottom: 24px;
+        width: 18px;
+        height: 18px;
+        color: #fff;
+        border-radius: 100px;
+        font-size: 10px;
+        line-height: 1.9;
+        right: -5px;
+      }
+      i {
+        position: relative;
+        top: 1px;
+      }
+      &:hover {
+        background-color: #fff;
+        color: #000;
+      }
+    }
+  }
+}
+// Library:: Notifs
+.library__notifs {
+  overflow-y: auto;
+  height: calc(100vh - 473px);
+}
+.library__notif {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #505893;
+  &:last-child { margin-bottom: 0; }
+  .library__notif-l {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    span {
+      background-color: #ffe0c1;
+      padding: 5px 5px 4.2px;
+      font-weight: lighter;
+      font-size: 12px;
+      color: #000;
+    }
+    strong{ color: #FFF; }
+    i {
+      width: 30px;
+      height: 30px !important;
+      background-color: #505893;
+      font-size: 15px;
+      display: flex !important;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      padding-bottom: 1px;
+      color: #FFF;
+    }
+  }
+  .library__notif-r {
+    display: flex;
+    align-items: center;
+    span {
+      width: 7px;
+      height: 7px;
+      background-color: #ff3770;
+      border-radius: 100%;
+      margin-right: 10px;
+      &.lib-read { background-color: #555; }
+    }
+    button {
+      line-height: 1.6;
+      height: 30px;
+      background-color: #2e73cc;
+      font-size: 15px;
+      text-align: center;
+      color: #fff;
+      width: 30px;
+      &:hover { background-color: #fff; color: #000; }
+    }
+  }
+}
+// Library:: Head
+.library__mdl-h_f span {
+  width: 35px;
+  height: 35px;
+  line-height: 36px;
+  background-color: #515cb0;
+  justify-content: center;
+  display: flex;
+  font-size: 15px;
+  color: #fff;
+}

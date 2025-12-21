@@ -1,0 +1,132 @@
+// Library:: Login
+.library__auth {
+  display: flex;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #2f3141;
+  margin-bottom: 2em;
+}
+.library__auth-cs {
+  height: 100vh;
+  display: grid;
+  color: #fff;
+}
+.library__auth-c {
+  width: 65em;
+  margin: auto;
+}
+.library__auth-bg {
+  background-image: url('../../../public/img/library-login-bg.png');
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+  display: block;
+  position: relative;
+  width: 100%;
+}
+// Library:: Left
+.library__auth-l {
+  margin: 0 auto 2em;
+  img {
+    width: 14em;
+  }
+}
+// Library:: Form
+.library__auth-f {
+  margin: auto;
+  width: 100%;
+  padding: 50px;
+  h1 {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+  .library__auth-fgs {
+    display: flex;
+    .library__auth-fg:first-child {
+      margin-right: 12px;
+    }
+  }
+  .library__auth-fg {
+    position: relative;
+    label {
+      font-size: 17px;
+      color: #000;
+      margin-bottom: 10px;
+    }
+    span {
+      position: absolute;
+      color: #2e3040;
+      left: 17px;
+      top: 17px;
+      font-size: 15px;
+    }
+    i.library__auth-sh {
+      position: absolute;
+      bottom: 31px;
+      right: 20px;
+      cursor: pointer;
+      color: #000;
+      font-size: 15px;
+      &:hover {
+        color: #565aed;
+      }
+    }
+    input {
+      border: 1px solid #d5d5d5;
+      padding: 13px 20px 13px 40px;
+      width: 100%;
+      margin-bottom: 15px;
+      transition: box-shadow 250ms cubic-bezier(.27, .01, .38, 1.06), border 250ms cubic-bezier(.27, .01, .38, 1.06);
+      background-color: #fff;
+      border-radius: 10px;
+      font-size: 16px;
+      &:focus,
+      &:hover {
+        color: #495057;
+        border-color: #00000041;
+        outline: none !important;
+      }
+    }
+  }
+  .library__auth-fm {
+    background-color: #e85472;
+    padding: 10px 15px;
+    color: #FFF;
+    margin-bottom: 20px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    i {
+      margin-right: 7px;
+      font-size: 13px;
+      bottom: -1px;
+      position: relative;
+    }
+  }
+}
+// Library:: Btns
+.library__auth-fga {
+  text-align: center;
+  button {
+    padding: 11px 35px;
+    background-color: #2e73cc;
+    border: 0;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 8px;
+    &[disabled] {
+      cursor: not-allowed;
+      opacity: 0.3;
+      color: #fff;
+      background-color: #000 !important;
+    }
+    &:hover {
+      background-color: #fff;
+      color: #000;
+    }
+  }
+}

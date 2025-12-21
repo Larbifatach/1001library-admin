@@ -1,0 +1,149 @@
+@if (!library_loading) {
+    <div class="library__main">
+        <div class="library__counts library__grids" style="--lib-grids: 4;">
+            <div class="library__count" routerLink="/books">
+                <h2>Books</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.books || 0 }}</span>
+                    <i class="fi fi-rr-book-bookmark"></i>
+                </div>
+            </div>
+            <div class="library__count" routerLink="/authors">
+                <h2>Authors</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.authors || 0 }}</span>
+                    <i class="fi fi-rr-user-pen"></i>
+                </div>
+            </div>
+            <div class="library__count" routerLink="/reviews">
+                <h2>Reviews</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.reviews || 0 }}</span>
+                    <i class="fi fi-rr-star-sharp-half-stroke"></i>
+                </div>
+            </div>
+            <div class="library__count" routerLink="/series">
+                <h2>Series</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.reviews || 0 }}</span>
+                    <i class="fi fi-rr-file-zipper"></i>
+                </div>
+            </div>
+            
+            <div class="library__count" routerLink="/categories">
+                <h2>Categories</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.categories || 0 }}</span>
+                    <i class="fi fi-rr-folder"></i>
+                </div>
+            </div>
+            <div class="library__count" routerLink="/subcategories">
+                <h2>Sub Categories</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.subcategories || 0 }}</span>
+                    <i class="fi fi-rr-folder-open"></i>
+                </div>
+            </div>
+            <div class="library__count" routerLink="/langs">
+                <h2>Languages</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.langs || 0 }}</span>
+                    <i class="fi fi-rr-language-exchange"></i>
+                </div>
+            </div>
+            <div class="library__count" routerLink="/years">
+                <h2>Years</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.years || 0 }}</span>
+                    <i class="fi fi-rr-daily-calendar"></i>
+                </div>
+            </div>
+
+
+            <div class="library__count" routerLink="/members">
+                <h2>Members</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.members || 0 }}</span>
+                    <i class="fi fi-rr-users"></i>
+                </div>
+            </div>
+            <div class="library__count" routerLink="/moderators">
+                <h2>Moderators</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.moderators || 0 }}</span>
+                    <i class="fi fi-rr-portrait"></i>
+                </div>
+            </div>
+            <div class="library__count" routerLink="/uploaders">
+                <h2>Uploders</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.uploaders || 0 }}</span>
+                    <i class="fi fi-rr-user-add"></i>
+                </div>
+            </div>
+            <div class="library__count" routerLink="/contacts">
+                <h2>Contacts</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.contacts || 0 }}</span>
+                    <i class="fi fi-rr-envelope"></i>
+                </div>
+            </div>
+
+
+            <div class="library__count" routerLink="/suggestions">
+                <h2>Suggestions</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.suggests || 0 }}</span>
+                    <i class="fi fi-rr-guide-alt"></i>
+                </div>
+            </div>
+            <div class="library__count" routerLink="/reports">
+                <h2>Reports</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.problems || 0 }}</span>
+                    <i class="fi fi-rr-file-circle-info"></i>
+                </div>
+            </div>
+            <div class="library__count" routerLink="/downloads">
+                <h2>Download Links</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.downloads || 0 }}</span>
+                    <i class="fi fi-rr-down-to-line"></i>
+                </div>
+            </div>
+            <div class="library__count" routerLink="/links-reports">
+                <h2>Invalid links</h2>
+                <div class="library__count-num">
+                    <span>{{ library_stats.links || 0 }}</span>
+                    <i class="fi fi-rr-broken-chain-link-wrong"></i>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="library__blocks" style="--lib-grids: 1;">
+            <div class="library__block">
+                <div class="library__block-t">
+                    <span><i class="fi fi-rr-chart-user"></i> Members Growth</span>
+                </div>
+                <div class="library__block-b">
+                    <apx-chart
+                        [series]="chartOptions.series!"
+                        [chart]="chartOptions.chart!"
+                        [xaxis]="chartOptions.xaxis!"
+                        [title]="chartOptions.title!"
+                    >
+                    </apx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+} @else {
+    <div class="library__loadingos">
+        <div class="library__loadingo">
+            <img src="/img/library-load.gif" alt="library">
+            <p>Récupération de données..</p>
+        </div>
+    </div>
+}

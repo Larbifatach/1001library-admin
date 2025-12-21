@@ -1,0 +1,9 @@
+<div class="library__flex library__heads-f">
+  <div class="library__frms-grp lib-wicn_r lib-last">
+    <i class="fi fi-rr-angle-small-down"></i>
+    <select [id]="library_id" [name]="library_name" [(ngModel)]="library_model['nums']" (ngModelChange)="library_changed.emit(library_model)">
+      <option value="">10 {{'Per Page'}}</option><option value="20">20 {{'Per Page'}}</option><option value="40">40 {{'Per Page'}}</option><option value="60">60 {{'Per Page'}}</option><option value="80">80 {{'Per Page'}}</option><option value="100">100 {{'Per Page'}}</option>
+    </select>
+  </div>
+  @if (library_has_fltr) { <button class="library__btns lib-square lib-bad" (click)="library_clear.emit()"> <i class="fi fi-rr-filter-slash"></i> </button> }
+</div>

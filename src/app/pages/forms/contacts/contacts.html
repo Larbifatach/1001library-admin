@@ -1,0 +1,94 @@
+ <ng-template #library_temp_show let-modal> <div class="library__mdl-h"><h4><i class="fi fi-rr-eye"></i> Preview: <strong>{{library_data_record.full_name}}</strong></h4><button class="library__btns lib-circle lib-close" (click)="modal.dismiss()"><i class="fi fi-rr-cross-small"></i></button></div>
+  <div class="library__mdl-b">
+    <div class="library__infos lib-last">
+        <div class="library__info">
+            <div class="library__info-t"><span><i class="fi fi-rr-user"></i> {{ 'Sender' }}</span></div>
+            <div class="library__info-b">
+                <ul>
+                    <li>
+                        <span>{{ 'Full Name' }}</span>
+                        <p>{{library_data_record.full_name}}</p>
+                    </li>
+                    <li>
+                        <span>{{ "Email" }}</span>
+                        <p>{{library_data_record.email}}</p>
+                    </li>
+                    <li>
+                        <span>{{ "Subject" }}</span>
+                        <p>{{library_data_record.subject}}</p>
+                    </li>
+                    <li class="lib-txts">
+                        <span>{{ "Message" }}</span>
+                        <p>{{library_data_record.msg}}</p>
+                    </li>
+                    <li>
+                        <span>{{ "Date" }}</span>
+                        <p>{{library_data_record.created | date:'dd MMM, yy'}}</p>
+                    </li>
+                    <li>
+                        <span>{{ "IP" }}</span>
+                        <p>{{library_data_record.ip}}</p>
+                    </li>
+                    <li>
+                        <span>{{ "Agent" }}</span>
+                        <p>{{library_data_record.user_agent}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </div>
+</ng-template>
+<!-- // -->
+<div class="library__main">
+    <div class="library__heads">
+        <div class="library__heads-t">
+            <h1><i class="fi fi-rr-envelope"></i> {{ 'Contacts' }}</h1>
+        </div>
+        <div class="library__heads-fs library__frms"><div class="library__flex library__heads-f">
+            <div class="library__frms-grp lib-wicn_r lib-last">
+                <i class="fi fi-rr-envelope"></i>
+                <input placeholder="{{'Per Email'}}" [(ngModel)]="library_filters['email']" id="library_filter_email" name="library_filter_email" type="text" (keyup.enter)="library_get_filtred()">
+            </div>
+        </div>
+        <library-nums [library_model]="library_filters" [library_has_fltr]="library_hasfltr" (library_changed)="library_get_filtred()" (library_clear)="library_rmv_filtred()"></library-nums></div>
+    </div>
+    <library-tables
+        [library_loads]="library_loading"
+        [library_total]="library_ttl_posts"
+        [library_page]="library_page"
+        [library_pages]="library_ttl_pages"
+        (library_paginate)="library_pagination($event)" >
+        <div class="library__tbls">
+            <div class="library__tbls-h">
+                <div class="library__tbls-col library__tbls-col-1">{{'Full Name'}}</div>
+                <div class="library__tbls-col library__tbls-col-2">{{"Email"}}</div>
+                <div class="library__tbls-col library__tbls-col-3">{{'IP'}}</div>
+                <div class="library__tbls-col library__tbls-col-4">{{"Date"}}</div>
+                <div class="library__tbls-col library__tbls-col-5"></div>
+            </div>
+            @for (record of library_records; track record.id) {
+                <div class="library__tbls-r">
+                    <div class="library__tbls-col library__tbls-col-1 library__flex lib-avatar" data-label="Full Name">
+                        <img [src]="'/img/library-avatar.png'">
+                        <h5>{{record.full_name}}</h5>
+                    </div>
+                    <div class="library__tbls-col library__tbls-col-2 library__flex" data-label="Email">
+                        <h5>{{ record.email }}</h5>
+                    </div>
+                    <div class="library__tbls-col library__tbls-col-3 library__flex" data-label="IP">
+                        <span class="lib-empty">{{ record.ip}}</span>
+                    </div>
+                    <div class="library__tbls-col library__tbls-col-4 library__flex" data-label="Date">
+                        <span class="lib-empty">{{ record.created | date:'dd MMM, yy' }}</span>
+                    </div>
+                    <div class="library__tbls-col library__tbls-col-5" data-label="Action">
+                        <div class="library__flex lib-last">
+                            <button class="library__btns lib-circle" ngbTooltip="{{'Preview'}}" (click)="library_modal_show(library_temp_show, record, $index)"><i class="fi fi-rr-eye"></i></button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </library-tables>
+</div>

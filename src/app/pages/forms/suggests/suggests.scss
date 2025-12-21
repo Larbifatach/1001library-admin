@@ -1,0 +1,21 @@
+.library__stars {
+  display: flex;
+  gap: 3px;
+  bottom: 2px;
+  position: relative;
+  svg {
+    width: 18px;
+  }
+  &.lib-wc{ margin-left: 10px; }
+}
+.library__comment {
+  color: #fff;
+  margin-bottom: 10px;
+}
+/*- Library:: Table -------*/
+.library__tbls {
+  .library__tbls-col-1 { flex-basis: 40%; }
+  .library__tbls-col-2 { flex-basis: 40%; }
+  .library__tbls-col-3 { flex-basis: 25%; }
+  .library__tbls-col-4 { flex-basis: 20%; }
+}

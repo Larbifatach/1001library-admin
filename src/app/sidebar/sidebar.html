@@ -1,0 +1,156 @@
+<ng-template #library_temp_notifs let-modal>
+    <div class="library__mdl-h">
+        <h4><i class="fi fi-rr-bell"></i> Notifications</h4>
+        <div class="library__mdl-h_f">
+            @if (library_notifs.length != 0) { <button class="library__btns lib-full lib-wicns lib-bad" (click)="library_delete_notifs()"><i class="fi fi-rr-trash"></i> Delete All</button> }
+            <span class="library__spans">{{library_user.library_notifs}}</span>
+            <button class="library__btns lib-circle lib-close" (click)="modal.dismiss()"><i class="fi fi-rr-cross-small"></i></button>
+        </div>
+    </div>
+    <div class="library__mdl-b">
+        <div class="library__notifs">
+            @for (notif of library_notifs; track notif.id) {
+                <div class="library__notif">
+                    <div class="library__notif-l">
+                        @if (notif.type == 'review') { <i class="fi fi-rr-star-sharp-half-stroke"></i> }
+                        @if (notif.type == 'problem') { <i class="fi fi-rr-file-circle-info"></i> }
+                        @if (notif.type == 'suggest') { <i class="fi fi-rr-guide-alt"></i> }
+                        @if (notif.type == 'invalid') { <i class="fi fi-rr-broken-chain-link-wrong"></i> }
+                        <strong>{{notif.content}}</strong>
+                        <span class="library__badges ls-ml-7">#{{notif.entity_id}}</span>
+                    </div>
+                    <div class="library__notif-r">
+                        <span [ngClass]="notif.is_read ? 'lib-read' : ''"></span>
+                        @if (notif.type == 'review') { <button (click)="modal.dismiss()" routerLink="/reviews" routerLinkActive="active"><i class="fi fi-rr-eye"></i></button> }
+                        @if (notif.type == 'problem') { <button (click)="modal.dismiss()" routerLink="/reports" routerLinkActive="active"><i class="fi fi-rr-eye"></i></button> }
+                        @if (notif.type == 'suggest') { <button (click)="modal.dismiss()" routerLink="/suggestions" routerLinkActive="active"><i class="fi fi-rr-eye"></i></button> }
+                        @if (notif.type == 'invalid') { <button (click)="modal.dismiss()" routerLink="/invalids" routerLinkActive="active"><i class="fi fi-rr-eye"></i></button> }
+                    </div>
+                </div>
+            }
+            @if (library_notifs.length == 0) { <div class="library__nodata"><span><i class="fi fi-rr-bell-slash"></i><p>No notifications yet!</p></span></div> }
+        </div>
+    </div>
+</ng-template>
+<ng-template #library_modal_sett let-modal>
+    <div class="library__mdl-h">
+        <h4><i class="fi fi-rr-pencil"></i> Edit <strong>Profil</strong></h4>
+        <button class="library__btns lib-circle lib-close" (click)="modal.dismiss()"><i class="fi fi-rr-cross-small"></i></button>
+    </div>
+    <div class="library__mdl-b">
+        <div class="library__frms">
+            <form name="form" autocomplete="off">
+                @if (library_errors_msg) { <div class="library__notes"><i class="fi fi-rr-triangle-warning"></i><p>{{library_errors_msg}}</p></div> }
+                <!-- // -->
+                <library-upload [library_exist_url]="library_edit_user.avatar_url" (library_uploaded)="library_edit_user.avatar_url = $event"></library-upload>
+                <!-- // -->
+                <div class="library__frms-cols">
+                    <div class="library__frms-grp">
+                        <label for="full_name">Full Name</label>
+                        <input id="full_name" [(ngModel)]="library_edit_user.full_name" placeholder="Full Name" name="full_name" type="text" required>
+                    </div>
+                    <div class="library__frms-grp">
+                        <label for="email">E-mail</label>
+                        <input id="email" [(ngModel)]="library_edit_user.email" placeholder="E-mail" name="email" type="email" required>
+                    </div>
+                </div>
+                <div class="library__frms-cols">
+                    <div class="library__frms-grp">
+                        <label for="password">Password</label>
+                        <input id="password" autocomplete="new-password" [(ngModel)]="library_edit_user.password" placeholder="Password" name="password" type="password" required>
+                    </div>
+                    <div class="library__frms-grp">
+                        <label for="repassword">Confirm Password</label>
+                        <input id="repassword" autocomplete="new-password" [(ngModel)]="library_edit_user.re_password" placeholder="Confirm Password" name="repassword" type="password" required>
+                    </div>
+                </div>
+                <div class="library__frms-acts">
+                    <button [disabled]="library_load_btns || !library_edit_user.full_name || !library_edit_user.email" (click)="library_update_user()" id="library_form_sbmt" type="submit">
+                        <span>@if (!library_load_btns) { <i class="fi fi-rr-check"></i> Update } @else { <i class="fi fi-rr-rotate-right lib-spin"></i> }</span>
+                    </button>
+                    <button (click)="library_logout()" class="lib-bad"><i class="fas fa-power-off"></i> Logout</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+<!-- // -->
+<div class="library__sbar">
+    <div class="library__sbar-h">
+        <div class="library__sbar-l"><img [src]="'/img/library-logo.png'" alt="library"></div>
+    </div>
+    <div class="library__sbar-ms">
+        <ul class="library__sbar-m">
+            <li routerLink="/dashboard" routerLinkActive="active">
+                <i class="fi fi-rr-chart-pie-alt"></i> <span>{{ 'Dashboard' }}</span><b></b>
+            </li>
+            <li routerLink="/members" routerLinkActive="active">
+                <i class="fi fi-rr-users"></i> <span>{{ 'Members' }}</span><b></b>
+            </li>
+            <li routerLink="/uploaders" routerLinkActive="active">
+                <i class="fi fi-rr-user-add"></i> <span>{{ 'Uploders' }}</span><b></b>
+            </li>
+            <li routerLink="/moderators" routerLinkActive="active">
+                <i class="fi fi-rr-portrait"></i> <span>{{ 'Moderators' }}</span><b></b>
+            </li>
+        </ul>
+        <ul class="library__sbar-m">
+            <h3>{{ 'Elements' }}</h3>
+            <li routerLink="/categories" routerLinkActive="active">
+                <i class="fi fi-rr-folder"></i> <span>{{ 'Categories' }}</span><b></b>
+            </li>
+            <li routerLink="/subcategories" routerLinkActive="active">
+                <i class="fi fi-rr-folder-open"></i> <span>{{ 'Sub Categories' }}</span><b></b>
+            </li>
+            <li routerLink="/languages" routerLinkActive="active">
+                <i class="fi fi-rr-language-exchange"></i> <span>{{ 'Languages' }}</span><b></b>
+            </li>
+            <li routerLink="/years" routerLinkActive="active">
+                <i class="fi fi-rr-daily-calendar"></i> <span>{{ 'Years' }}</span><b></b>
+            </li>
+            <li routerLink="/series" routerLinkActive="active">
+                <i class="fi fi-rr-file-zipper"></i> <span>{{ 'Series' }}</span><b></b>
+            </li>
+        </ul>
+        <ul class="library__sbar-m">
+            <h3>{{ 'Content' }}</h3>
+            <li routerLink="/books" routerLinkActive="active">
+                <i class="fi fi-rr-book-bookmark"></i> <span>{{ 'Books' }}</span><b></b>
+            </li>
+            <li routerLink="/authors" routerLinkActive="active">
+                <i class="fi fi-rr-user-pen"></i> <span>{{ 'Authors' }}</span><b></b>
+            </li>
+            <li routerLink="/reviews" routerLinkActive="active">
+                <i class="fi fi-rr-star-sharp-half-stroke"></i> <span>{{ 'Reviews' }}</span><b></b>
+            </li>
+        </ul>
+        <ul class="library__sbar-m">
+            <h3>{{ 'Downloads' }}</h3>
+            <li routerLink="/downloads" routerLinkActive="active">
+                <i class="fi fi-rr-down-to-line"></i> <span>{{ 'Download Links' }}</span><b></b>
+            </li>
+            <li routerLink="/invalids" routerLinkActive="active">
+                <i class="fi fi-rr-broken-chain-link-wrong"></i> <span>{{ 'Invalid links' }}</span><b></b>
+            </li>
+        </ul>
+        <ul class="library__sbar-m">
+            <h3>{{ 'Forms' }}</h3>
+            <li routerLink="/suggestions" routerLinkActive="active">
+                <i class="fi fi-rr-guide-alt"></i> <span>{{ 'Suggestions' }}</span><b></b>
+            </li>
+            <li routerLink="/reports" routerLinkActive="active">
+                <i class="fi fi-rr-file-circle-info"></i> <span>{{ 'Reports' }}</span><b></b>
+            </li>
+            <li routerLink="/contacts" routerLinkActive="active">
+                <i class="fi fi-rr-envelope"></i> <span>{{ 'Contacts' }}</span><b></b>
+            </li>
+        </ul>
+    </div>
+    <div class="library__sbar-fs">
+        <div class="library__sbar-f">
+            <img (click)="library_modal_settings(library_modal_sett)" [src]="library_user.avatar_url || '/img/library-avatar.png'">
+            <button (click)="library_modal_notifs(library_temp_notifs)"><i class="fi fi-rr-bell"></i> <span>{{library_user.library_notifs}}</span></button>
+            <button routerLink="/options" routerLinkActive="active"><i class="fi fi-rr-settings-sliders"></i></button>
+        </div>
+    </div>
+</div>

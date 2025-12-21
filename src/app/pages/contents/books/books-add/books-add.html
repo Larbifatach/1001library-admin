@@ -1,0 +1,197 @@
+<div class="library__main">
+    <div class="library__heads">
+        <div class="library__heads-t">
+            <h1><button class="library__btns lib-back" routerLink="/books"><i class="fi fi-rr-arrow-small-left"></i></button><i class="fi fi-rr-multiple"></i> {{ 'Add new book' }}</h1>
+            <button class="library__btns lib-good" [disabled]="library_load_btns || library_validate" (click)="library_publish_record()">
+                @if (!library_load_btns) { <i class="fi fi-rr-check"></i> {{ "Create the book" }} } @else {<i class="fi fi-rr-rotate-right lib-spin"></i>}
+            </button>
+        </div>
+        <div class="library__heads-fs library__frms">
+            <div class="library__tabs lib-inside">
+                <button [ngClass]="{'lib-actv': library_tab==='Description'}" (click)="library_chenge_tab('Description')"><i class="fi fi-rr-text-box-edit"></i> {{'Description'}}</button>
+                <button [ngClass]="{'lib-actv': library_tab==='Info'}" (click)="library_chenge_tab('Info')"><i class="fi fi-rr-info"></i> {{'Info'}}</button>
+                <button [ngClass]="{'lib-actv': library_tab==='Control'}" (click)="library_chenge_tab('Control')"><i class="fi fi-rr-link-alt"></i> {{'Control'}}</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="library__cntns">
+            @if (library_errors_msg) {<div class="library__notes"><i class="fi fi-rr-triangle-warning"></i> {{library_errors_msg}}</div>}
+            <form name="form" autocomplete="off" class="library__frms">
+                <div [hidden]="library_tab != 'Info'">
+                    <!-- // -->
+                    <div class="library__flex lib-nrml lib-more">
+                        <div class="library__book_cvr">
+                            <library-upload [library_field]="'cover_url'" [library_class]="'lib-cover'" [library_exist_url]="library_create_record.cover_url" (library_uploaded)="library_create_record.cover_url = $event"></library-upload>
+                        </div>
+                        <div class="library__book_rgt">
+                            <div class="library__frms-cols lib-start">
+                                <div class="library__frms-grp">
+                                    <label for="isbn_10">{{ 'ISBN 10' }}</label>
+                                    <input name="isbn_10" id="isbn_10" [(ngModel)]="library_create_record.isbn_10" placeholder="{{ 'ISBN 10' }}" type="text">
+                                </div>
+                                <div class="library__frms-grp">
+                                    <label for="isbn_13">{{ 'ISBN 13' }}</label>
+                                    <input name="isbn_13" id="isbn_13" [(ngModel)]="library_create_record.isbn_13" placeholder="{{ 'ISBN 13' }}" type="text">
+                                </div>
+                                <div class="library__frms-grp">
+                                    <label for="volume">{{ 'Volume' }}</label>
+                                    <input name="volume" id="volume" [(ngModel)]="library_create_record.volume" placeholder="{{ 'Volume, EX: 1' }}" type="text">
+                                </div>
+                                <div class="library__frms-grp">
+                                    <label for="publishing">{{ 'Publishing' }}</label>
+                                    <input name="publishing" id="publishing" [(ngModel)]="library_create_record.publishing" placeholder="{{ 'Publishing, EX: 1990' }}" type="text">
+                                </div>
+                                <div class="library__frms-grp">
+                                    <label for="pages">{{ 'Pages' }}</label>
+                                    <input name="pages" id="pages" [(ngModel)]="library_create_record.pages" placeholder="{{ 'Pages, EX: 100' }}" type="text">
+                                </div>
+                                <div class="library__frms-grp">
+                                    <label for="edition">{{ 'Edition' }}</label>
+                                    <input name="edition" id="edition" [(ngModel)]="library_create_record.edition" placeholder="{{ 'Edition, EX: 1' }}" type="text">
+                                </div>
+                            </div>
+                            <div class="library__frms-grp library__frms-tgl">
+                                <label for="is_active">
+                                    {{ 'Is active' }}
+                                    <input id="is_active" name="is_active" [(ngModel)]="library_create_record.is_active" type="checkbox">
+                                    <span class="library__frms-tgl-co"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // -->
+                    <div class="library__block">
+                        <div class="library__block-t"><span>Paperbacks</span></div>
+                        <div class="library__block-b">
+                            <div class="library__frms-cols lib-start lib-three">
+                                <div class="library__frms-grp">
+                                    <label for="amazon">{{ 'Amazon' }}</label>
+                                    <input name="amazon" id="amazon" [(ngModel)]="library_create_record.paperback.amazon" placeholder="{{ 'Amazon Link' }}" type="text">
+                                </div>
+                                <div class="library__frms-grp">
+                                    <label for="barnes">{{ 'Barnes & Noble' }}</label>
+                                    <input name="barnes" id="barnes" [(ngModel)]="library_create_record.paperback.barnes" placeholder="{{ 'BN Link' }}" type="text">
+                                </div>
+                                <div class="library__frms-grp">
+                                    <label for="bookshop">{{ 'Bookshop' }}</label>
+                                    <input name="bookshop" id="bookshop" [(ngModel)]="library_create_record.paperback.bookshop" placeholder="{{ 'BS Link' }}" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // -->
+                </div>
+                <!-- // -->
+                <div [hidden]="library_tab != 'Description'">
+                    <div class="library__blocks lib-three lib-wbtm">
+                        <div class="library__block">
+                            <div class="library__block-t"><span><img [src]="'/img/library_english.svg'" alt="Library"> English</span></div>
+                            <div class="library__block-b">
+                                <div class="library__frms-grp">
+                                    <label for="name_en">{{ 'Title' }}</label>
+                                    <input name="name_en" id="name_en" [(ngModel)]="library_create_record.name_en" placeholder="{{ 'English Title' }}" type="text">
+                                </div>
+                                <div class="library__frms-grp library_editor">
+                                    <label for="description_en">{{ 'Description' }}</label>
+                                    <textarea name="description_en" id="description_en" placeholder="{{ 'Description in English' }}" [(ngModel)]="library_create_record.description_en" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="library__block">
+                            <div class="library__block-t"><span><img [src]="'/img/library_arabic.svg'" alt="Library"> Arabic</span></div>
+                            <div class="library__block-b">
+                                <div class="library__frms-grp">
+                                    <label for="name_ar">{{ 'Title' }}</label>
+                                    <input name="name_ar" id="name_ar" [(ngModel)]="library_create_record.name_ar" placeholder="{{ 'Arabic Title' }}" type="text">
+                                </div>
+                                <div class="library__frms-grp library_editor">
+                                    <label for="description_ar">{{ 'Description' }}</label>
+                                    <textarea name="description_ar" id="description_ar" placeholder="{{ 'Description in Arabic' }}" [(ngModel)]="library_create_record.description_ar" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="library__block">
+                            <div class="library__block-t"><span><img [src]="'/img/library_french.svg'" alt="Library"> French</span></div>
+                            <div class="library__block-b">
+                                <div class="library__frms-grp">
+                                    <label for="name_fr">{{ 'Title' }}</label>
+                                    <input name="name_fr" id="name_fr" [(ngModel)]="library_create_record.name_fr" placeholder="{{ 'French Title' }}" type="text">
+                                </div>
+                                <div class="library__frms-grp library_editor">
+                                    <label for="description_fr">{{ 'Description' }}</label>
+                                    <textarea name="description_fr" id="description_fr" placeholder="{{ 'Description in Arabic' }}" [(ngModel)]="library_create_record.description_fr" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- // -->
+                <div [hidden]="library_tab != 'Control'">
+                    <div class="library__frms-grp">
+                        <label for="subcats">{{'Sub Categories'}}</label>
+                        <library-selects
+                            library_path="all-subcats"
+                            [(library_value)]="library_create_record.sub_categories"
+                            [library_preload]="library_sub_categories"
+                            library_label_key="name"
+                            [library_is_multi]="true"
+                            library_value_key="id"
+                            library_placeholder="{{'Search in sub categories'}}">
+                        </library-selects>
+                    </div>
+                    <!-- // -->
+                    <div class="library__frms-grp">
+                        <label for="authors">{{'Authors'}}</label>
+                        <library-selects
+                            library_path="all-authors"
+                            [(library_value)]="library_create_record.authors"
+                            [library_preload]="library_authors"
+                            library_label_key="name"
+                            [library_is_multi]="true"
+                            library_value_key="id"
+                            library_placeholder="{{'Search in authors'}}">
+                        </library-selects>
+                    </div>
+                    <!-- // -->
+                    <div class="library__frms-grp">
+                        <label for="years">{{'Year'}}</label>
+                        <library-selects
+                            library_path="all-years"
+                            [(library_value)]="library_create_record.id_year"
+                            [library_preload]="library_years"
+                            library_label_key="name"
+                            [library_is_multi]="false"
+                            library_value_key="id"
+                            library_placeholder="{{'Search in years'}}">
+                        </library-selects>
+                    </div>
+                    <div class="library__frms-grp">
+                        <label for="langs">{{'Languages'}}</label>
+                        <library-selects
+                            library_path="all-langs"
+                            [(library_value)]="library_create_record.id_lang"
+                            [library_preload]="library_langs"
+                            library_label_key="name"
+                            [library_is_multi]="false"
+                            library_value_key="id"
+                            library_placeholder="{{'Search in languages'}}">
+                        </library-selects>
+                    </div>
+                    <div class="library__frms-grp">
+                        <label for="series">{{'Series'}}</label>
+                        <library-selects
+                            library_path="all-series"
+                            [(library_value)]="library_create_record.id_series"
+                            [library_preload]="library_series"
+                            library_label_key="name"
+                            [library_is_multi]="false"
+                            library_value_key="id"
+                            library_placeholder="{{'Search in series'}}">
+                        </library-selects>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

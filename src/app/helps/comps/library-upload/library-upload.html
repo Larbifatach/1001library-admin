@@ -1,0 +1,10 @@
+<div class="library__frms-grp lib-upload {{library_class}}">
+  @if(!library_prev_url){ <label [for]="library_id"><i [class]="library_icon"></i></label> }
+  <input [id]="library_id" type="file" accept="image/*" (change)="library_onchng($event)" />
+  @if(library_prev_url && library_show_rmv){ <span (click)="library_remove()"><i class="fi fi-rr-trash"></i></span> }
+  @if(library_class == 'lib-avatar' && library_prev_url){ <img [src]="library_prev_url" [height]="library_height" /> }
+  @if((library_class == 'lib-bg' || library_class == 'lib-cover' || library_class == 'lib-image' || library_class == 'lib-logo') && library_prev_url){ 
+    <picture [style.background-color]="library_bg" style="background-image: url({{library_prev_url}});"></picture>
+  }
+  @if(library_error){ <small class="text-danger">{{ library_error }}</small> }
+</div>

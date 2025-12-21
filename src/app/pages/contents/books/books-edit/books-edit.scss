@@ -1,0 +1,18 @@
+/*- Library:: Main -------*/
+.library__main {
+  display: grid;
+  gap: 25px;
+}
+.library__cntns {
+  height: calc(100vh - 212px);
+}
+.library__book_cvr {
+  flex: 0 0 250px;
+}
+.library__book_rgt {
+  flex: 1;
+}
+/*- Library:: Format -------*/
+.library__frms .library__frms-cols {
+  grid-gap: 15px;
+}
