@@ -29,7 +29,7 @@ export class BooksAdd {
   public library_record_id : any;
 
   // Library:: Tabs
-  public library_tab : string = 'Description';
+  public library_tab : string = 'Info';
   library_chenge_tab(data: string): void { this.library_tab = data; }
 
   // Library:: Toeast
@@ -51,17 +51,13 @@ export class BooksAdd {
   // Library:: Valid
   get library_validate(): boolean {
     return (
-      !this.library_edit_record.name_en || !this.library_edit_record.name_ar || !this.library_edit_record.name_fr ||
-      !this.library_edit_record.description_en || !this.library_edit_record.description_fr || !this.library_edit_record.description_ar ||
+      !this.library_edit_record.name_en ||
+      !this.library_edit_record.description_en ||
       !this.library_edit_record.cover_url ||
-      //
-      !this.library_edit_record.isbn_10 ||
-      !this.library_edit_record.isbn_13 ||
       //
       !this.library_edit_record.id_year ||
       !this.library_edit_record.id_lang ||
       //
-      !this.library_edit_record.volume || 
       !this.library_edit_record.publishing ||
       !this.library_edit_record.pages ||
       !this.library_edit_record.edition ||
@@ -119,12 +115,6 @@ export class BooksAdd {
       this.library_series = this.library_book.series ? [this.library_book.series] : [];
       this.library_sub_categories = this.library_book.sub_categories || [];
       this.library_authors = this.library_book.authors || [];
-      //
-      this.library_edit_record.paperback = this.library_edit_record.paperback ?? {
-        amazon: '',
-        barnes: '',
-        bookshop: ''
-      };
       // 
       this.library_loading = false;
       console.log(this.library_edit_record)

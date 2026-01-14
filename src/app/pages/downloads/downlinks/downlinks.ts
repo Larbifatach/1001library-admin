@@ -19,6 +19,7 @@ import { Downlink } from '../../../modules/library-interfaces';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 //
 @Component({
   selector: 'library-downlinks',
@@ -26,7 +27,8 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './downlinks.scss',
   //
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, LibrarySelects, NgbTooltipModule, LibraryDeletes, LibraryNums,  LibraryTables],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, LibrarySelects, NgbTooltipModule, LibraryDeletes, LibraryNums,  LibraryTables, NgxMaskDirective],
+  providers: [provideNgxMask()],
 })
 export class Downlinks extends LibraryCrud {
 
@@ -53,7 +55,8 @@ export class Downlinks extends LibraryCrud {
     this.library_create_record = {
       id: 0,
       size: '',
-      extension: 'PDF',
+      unit: 'MB',
+      extension: 'EPUB',
       download_url: '',
       id_book: null,
       id_uploader: null,

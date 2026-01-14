@@ -2,17 +2,25 @@
   <div class="library__frms">
     <form name="form" autocomplete="off">
         @if (library_errors_msg) {<div class="library__notes"><i class="fi fi-rr-triangle-warning"></i> {{library_errors_msg}}</div>}
-        <div class="library__frms-cols">
+        <div class="library__frms-cols lib-three">
             <div class="library__frms-grp">
-                <label for="size">Size (MB)</label>
-                <input id="size" [(ngModel)]="model.size" placeholder="Size" name="size" type="text" required>
+                <label for="size">Size</label>
+                <input id="size" [(ngModel)]="model.size" mask="separator.2" thousandSeparator="," [showMaskTyped]="false" placeholder="Size" name="size" type="text" required>
+            </div>
+            <div class="library__frms-grp lib-wicn_r lib-last lib-frst">
+                <i class="fi fi-rr-angle-small-down"></i>
+                <label for="unit">Unit</label>
+                <select [(ngModel)]="model.unit" id="unit" name="unit" required>
+                    <option value="MB">{{'MB'}}</option>
+                    <option value="KB">{{'KB'}}</option>
+                </select>
             </div>
             <div class="library__frms-grp lib-wicn_r lib-last lib-frst">
                 <i class="fi fi-rr-angle-small-down"></i>
                 <label for="extension">Extension</label>
                 <select [(ngModel)]="model.extension" id="extension" name="extension" required>
-                    <option value="PDF">{{'PDF'}}</option>
                     <option value="EPUB">{{'EPUB'}}</option>
+                    <option value="PDF">{{'PDF'}}</option>
                     <option value="TEXT">{{'TEXT'}}</option>
                 </select>
             </div>
@@ -102,8 +110,8 @@
             <div class="library__info-b">
                 <ul>
                     <li><span>{{ 'Name' }}</span><p>{{library_data_record.book.name}}</p></li>
-                    <li><span>{{ 'ISBN 10' }}</span><p>{{library_data_record.book.isbn_10}}</p></li>
-                    <li><span>{{ 'ISBN 13' }}</span><p>{{library_data_record.book.isbn_13}}</p></li>
+                    @if (library_data_record.book.isbn_10) { <li><span>{{ 'ISBN 10' }}</span><p>{{library_data_record.book.isbn_10}}</p></li> }
+                    @if (library_data_record.book.isbn_13) { <li><span>{{ 'ISBN 13' }}</span><p>{{library_data_record.book.isbn_13}}</p></li> }
                 </ul>
             </div>
         </div>
@@ -111,7 +119,7 @@
             <div class="library__info-t"><span><i class="fi fi-rr-down-to-line"></i> {{ 'Download Link' }}</span></div>
             <div class="library__info-b">
                 <ul>
-                    <li><span>{{ "Size" }}</span><p>{{library_data_record.size}} MB</p></li>
+                    <li><span>{{ "Size" }}</span><p>{{library_data_record.size}} {{library_data_record.unit}}</p></li>
                     <li><span>{{ "Extension" }}</span><p>{{library_data_record.extension}}</p></li>
                     <li><span>{{ "Download Url" }}</span><p>{{library_data_record.download_url}}</p></li>
                     <li><span>{{ "Downloads" }}</span><p>{{library_data_record.downloads}}</p></li>
@@ -145,8 +153,8 @@
                 <i class="fi fi-rr-angle-small-down"></i>
                 <select [(ngModel)]="library_filters['extension']" id="library_filter_extension" name="library_filter_extension" (ngModelChange)="library_get_filtred()">
                     <option value="">{{'Extension (All)'}}</option>
-                    <option value="PDF">{{'PDF'}}</option>
                     <option value="EPUB">{{'EPUB'}}</option>
+                    <option value="PDF">{{'PDF'}}</option>
                     <option value="TEXT">{{'TEXT'}}</option>
                 </select>
             </div>
@@ -174,7 +182,7 @@
                         <span class="lib-empty">{{record.id}}</span>
                     </div>
                     <div class="library__tbls-col library__tbls-col-1 library__flex" data-label="Size">
-                        <span class="lib-empty">{{record.size}} MB</span>
+                        <span class="lib-empty">{{record.size}} {{record.unit}}</span>
                     </div>
                     <div class="library__tbls-col library__tbls-col-2 library__flex" data-label="Book">
                         <img [src]="record.book.cover_url || '/img/library-cover.jpg'">

@@ -2,6 +2,7 @@
     <div class="library__frms">
         <form name="form" autocomplete="off">
             @if (library_errors_msg) {<div class="library__notes"><i class="fi fi-rr-triangle-warning"></i> {{library_errors_msg}}</div>}
+            
             <!-- // -->
             @if(library_data_record.key == 'msg'){ 
                 <div class="library__blocks lib-wbtm">
@@ -109,6 +110,16 @@
                 </div>
             }
             <!-- // -->
+            @if(library_data_record.key == 'paperback'){ 
+                <div class="library__frms-grp library__frms-tgl">
+                    <label for="is_paperback">
+                        {{ 'Active paperback' }}
+                        <input id="is_paperback" name="is_paperback" type="checkbox" [(ngModel)]="model.value.is_active">
+                        <span class="library__frms-tgl-co"></span>
+                    </label>
+                </div>
+            }
+            <!-- // -->
             <div class="library__frms-acts">
                 <button [disabled]="library_load_btns || library_valid()" (click)="library_update_record()" id="library_form_sbmt" type="submit">
                     <span>@if (!library_load_btns) { <i class="fi fi-rr-check"></i> Update } @else {<i class="fi fi-rr-rotate-right lib-spin"></i>}</span>
@@ -125,6 +136,9 @@
             @if(library_data_record.key == 'points'){ <i class="fi fi-rr-coins"></i> <strong>{{ "Points" }}</strong> }
             @if(library_data_record.key == 'keywords'){ <i class="fi fi-rr-tags"></i> <strong>{{ 'SEO - Keywords' }}</strong> }
             @if(library_data_record.key == 'description'){ <i class="fi fi-rr-browser"></i> <strong>{{ 'SEO - Description' }}</strong> }
+            @if(library_data_record.key == 'paperback'){ <i class="fi fi-rr-search-alt"></i> <strong>{{ "Paperback" }}</strong> }
+
+
         </h4>
         <button class="library__btns lib-circle lib-close" (click)="modal.dismiss()"><i class="fi fi-rr-cross-small"></i></button>
     </div>
@@ -155,6 +169,7 @@
                                 @if(record.key == 'points'){ <i class="fi fi-rr-coins"></i> <span>{{ "Points" }}</span> }
                                 @if(record.key == 'keywords'){ <i class="fi fi-rr-tags"></i> <span>{{ 'SEO - Keywords' }}</span> }
                                 @if(record.key == 'description'){ <i class="fi fi-rr-browser"></i> <span>{{ 'SEO - Description' }}</span> }
+                                @if(record.key == 'paperback'){ <i class="fi fi-rr-search-alt"></i> <span>{{ 'Paperback' }}</span> }
                             </div>
                         }
                     }

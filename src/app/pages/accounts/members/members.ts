@@ -43,6 +43,11 @@ export class Members extends LibraryCrud {
     this.library_path = 'members';
   }
 
+  // Library:: Global Vars & Funcs
+  public library_to_username(value: string): string { 
+    return value.toLowerCase().replace(/[\s\W-]+/g, '-') .replace(/^-+|-+$/g, '');
+  }
+
   // Library:: Edit Record 
   get library_edit_validate(): boolean {
     return (

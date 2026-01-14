@@ -65,8 +65,8 @@ export interface Seriess {
 // Library:: Content
 export interface Book {
     id: number,
-    name_en: string, name_fr: string, name_ar: string,
-    description_en: string, description_fr: string, description_ar: string,
+    name_en: string,
+    description_en: string,
     cover_url: string,
     //
     isbn_10: string,
@@ -78,7 +78,6 @@ export interface Book {
     //
     sub_categories: any,
     authors: any,
-    paperback: any,
     //
     volume: string,
     publishing: string,
@@ -105,6 +104,7 @@ export interface Downlink {
     id: number,
     // 
     size: string,
+    unit: string,
     extension: string,
     download_url: string,
     //

@@ -30,8 +30,8 @@
                     <div class="library__info-b">
                         <ul>
                             <li><span>{{ 'Name' }}</span><p>{{library_data_record.book.name_en}}</p></li>
-                            <li><span>{{ 'ISBN 10' }}</span><p>{{library_data_record.book.isbn_10}}</p></li>
-                            <li><span>{{ 'ISBN 13' }}</span><p>{{library_data_record.book.isbn_13}}</p></li>
+                            @if (library_data_record.book.isbn_10) { <li><span>{{ 'ISBN 10' }}</span><p>{{library_data_record.book.isbn_10}}</p></li> }
+                            @if (library_data_record.book.isbn_13) { <li><span>{{ 'ISBN 13' }}</span><p>{{library_data_record.book.isbn_13}}</p></li> }
                         </ul>
                     </div>
                 </div>

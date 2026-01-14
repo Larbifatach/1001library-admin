@@ -11,7 +11,6 @@
         </div>
         <div class="library__heads-fs library__frms">
             <div class="library__tabs lib-inside">
-                <button [ngClass]="{'lib-actv': library_tab==='Description'}" (click)="library_chenge_tab('Description')"><i class="fi fi-rr-text-box-edit"></i> {{'Description'}}</button>
                 <button [ngClass]="{'lib-actv': library_tab==='Info'}" (click)="library_chenge_tab('Info')"><i class="fi fi-rr-info"></i> {{'Info'}}</button>
                 <button [ngClass]="{'lib-actv': library_tab==='Control'}" (click)="library_chenge_tab('Control')"><i class="fi fi-rr-link-alt"></i> {{'Control'}}</button>
             </div>
@@ -20,6 +19,15 @@
     @if (!library_loading) { <div> <div class="library__cntns"> @if (library_errors_msg) {<div class="library__notes"><i class="fi fi-rr-triangle-warning"></i> {{library_errors_msg}}</div>}
         <form name="form" autocomplete="off" class="library__frms">
             <div [hidden]="library_tab != 'Info'">
+                <!-- // -->
+                <div class="library__frms-grp">
+                    <label for="name_en">{{ 'Title' }}</label>
+                    <input name="name_en" id="name_en" [(ngModel)]="library_edit_record.name_en" placeholder="{{ 'Title' }}" type="text">
+                </div>
+                <div class="library__frms-grp library_editor">
+                    <label for="description_en">{{ 'Description' }}</label>
+                    <textarea name="description_en" id="description_en" placeholder="{{ 'Description' }}" [(ngModel)]="library_edit_record.description_en" cols="30" rows="10"></textarea>
+                </div>
                 <!-- // -->
                 <div class="library__flex lib-nrml lib-more">
                     <div class="library__book_cvr">
@@ -62,69 +70,6 @@
                     </div>
                 </div>
                 <!-- // -->
-                <div class="library__block">
-                    <div class="library__block-t"><span>Paperbacks</span></div>
-                    <div class="library__block-b">
-                        <div class="library__frms-cols lib-start lib-three">
-                            <div class="library__frms-grp">
-                                <label for="amazon">{{ 'Amazon' }}</label>
-                                <input name="amazon" id="amazon" [(ngModel)]="library_edit_record.paperback.amazon" placeholder="{{ 'Amazon Link' }}" type="text">
-                            </div>
-                            <div class="library__frms-grp">
-                                <label for="barnes">{{ 'Barnes & Noble' }}</label>
-                                <input name="barnes" id="barnes" [(ngModel)]="library_edit_record.paperback.barnes" placeholder="{{ 'BN Link' }}" type="text">
-                            </div>
-                            <div class="library__frms-grp">
-                                <label for="bookshop">{{ 'Bookshop' }}</label>
-                                <input name="bookshop" id="bookshop" [(ngModel)]="library_edit_record.paperback.bookshop" placeholder="{{ 'BS Link' }}" type="text">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- // -->
-            <div [hidden]="library_tab != 'Description'">
-                <div class="library__blocks lib-three lib-wbtm">
-                    <div class="library__block">
-                        <div class="library__block-t"><span><img [src]="'/img/library_english.svg'" alt="Library"> English</span></div>
-                        <div class="library__block-b">
-                            <div class="library__frms-grp">
-                                <label for="name_en">{{ 'Title' }}</label>
-                                <input name="name_en" id="name_en" [(ngModel)]="library_edit_record.name_en" placeholder="{{ 'English Title' }}" type="text">
-                            </div>
-                            <div class="library__frms-grp library_editor">
-                                <label for="description_en">{{ 'Description' }}</label>
-                                <textarea name="description_en" id="description_en" placeholder="{{ 'Description in English' }}" [(ngModel)]="library_edit_record.description_en" cols="30" rows="10"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="library__block">
-                        <div class="library__block-t"><span><img [src]="'/img/library_arabic.svg'" alt="Library"> Arabic</span></div>
-                        <div class="library__block-b">
-                            <div class="library__frms-grp">
-                                <label for="name_ar">{{ 'Title' }}</label>
-                                <input name="name_ar" id="name_ar" [(ngModel)]="library_edit_record.name_ar" placeholder="{{ 'Arabic Title' }}" type="text">
-                            </div>
-                            <div class="library__frms-grp library_editor">
-                                <label for="description_ar">{{ 'Description' }}</label>
-                                <textarea name="description_ar" id="description_ar" placeholder="{{ 'Description in Arabic' }}" [(ngModel)]="library_edit_record.description_ar" cols="30" rows="10"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="library__block">
-                        <div class="library__block-t"><span><img [src]="'/img/library_french.svg'" alt="Library"> French</span></div>
-                        <div class="library__block-b">
-                            <div class="library__frms-grp">
-                                <label for="name_fr">{{ 'Title' }}</label>
-                                <input name="name_fr" id="name_fr" [(ngModel)]="library_edit_record.name_fr" placeholder="{{ 'French Title' }}" type="text">
-                            </div>
-                            <div class="library__frms-grp library_editor">
-                                <label for="description_fr">{{ 'Description' }}</label>
-                                <textarea name="description_fr" id="description_fr" placeholder="{{ 'Description in Arabic' }}" [(ngModel)]="library_edit_record.description_fr" cols="30" rows="10"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- // -->
             <div [hidden]="library_tab != 'Control'">

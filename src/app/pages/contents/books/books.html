@@ -13,14 +13,6 @@
       <!-- // -->
       <div class="library__frms-cols lib-start">
         <div class="library__frms-grp">
-          <label for="isbn_10">{{ 'ISBN 10' }}</label>
-          <input name="isbn_10" id="isbn_10" [(ngModel)]="model.isbn_10" placeholder="{{ 'ISBN 10' }}" type="text">
-        </div>
-        <div class="library__frms-grp">
-          <label for="isbn_13">{{ 'ISBN 13' }}</label>
-          <input name="isbn_13" id="isbn_13" [(ngModel)]="model.isbn_13" placeholder="{{ 'ISBN 13' }}" type="text">
-        </div>
-        <div class="library__frms-grp">
           <label for="volume">{{ 'Volume' }}</label>
           <input name="volume" id="volume" [(ngModel)]="model.volume" placeholder="{{ 'Volume, EX: 1' }}" type="text">
         </div>
@@ -44,7 +36,7 @@
       </div>
       <!-- // -->
       <div class="library__frms-acts">
-        <button [disabled]="library_on_loading || !model.slug || !model.isbn_10 || !model.isbn_13 || !model.volume || !model.publishing || !model.pages || !model.edition" type="button" (click)="library_on_submit()">
+        <button [disabled]="library_on_loading || !model.slug || !model.volume || !model.publishing || !model.pages || !model.edition" type="button" (click)="library_on_submit()">
           <span>@if (!library_on_loading) { <i class="fi fi-rr-check"></i> {{library_submiting}} } @else {<i class="fi fi-rr-rotate-right lib-spin"></i>}</span>
         </button>
       </div>
@@ -86,7 +78,7 @@
             <li><span>{{ 'Title' }}</span><p>{{library_data_record.name_en}}</p></li>
             <li><span>{{ 'ISBN 10' }}</span><p>{{library_data_record.isbn_10}}</p></li>
             <li><span>{{ 'ISBN 13' }}</span><p>{{library_data_record.isbn_13}}</p></li>
-            <li><span>{{ 'Volume' }}</span><p>{{library_data_record.volume}}</p></li>
+            @if (library_data_record.volume) { <li><span>{{ 'Volume' }}</span><p>{{library_data_record.volume}}</p></li> }
             <li><span>{{ 'Publishing' }}</span><p>{{library_data_record.publishing}}</p></li>
             <li><span>{{ 'Pages' }}</span><p>{{library_data_record.pages}}</p></li>
             <li><span>{{ 'Edition' }}</span><p>{{library_data_record.edition}}</p></li>
@@ -120,7 +112,7 @@
             <ul>
               <li><span>{{ 'Year' }}</span><p>{{library_data_record.year.name}}</p></li>
               <li><span>{{ 'Language' }}</span><p>{{library_data_record.lang.name}}</p></li>
-              <li><span>{{ 'Series' }}</span><p>{{library_data_record.series.name}}</p></li>
+              @if (library_data_record.series) { <li><span>{{ 'Series' }}</span><p>{{library_data_record.series.name}}</p></li> }
             </ul>
           </div>
         </div>
@@ -139,6 +131,10 @@
       <div class="library__frms-grp lib-wicn_r lib-last">
           <i class="fi fi-rr-book-bookmark"></i>
           <input placeholder="{{'Per name'}}" [(ngModel)]="library_filters['name']" id="library_filter_name" name="library_filter_name" type="text" (keyup.enter)="library_get_filtred()">
+      </div>
+      <div class="library__frms-grp lib-wicn_r lib-last">
+          <i class="fi fi-rr-book-bookmark"></i>
+          <input placeholder="{{'Per ISBN 10'}}" [(ngModel)]="library_filters['isbn']" id="library_filter_isbn" name="library_filter_isbn" type="text" (keyup.enter)="library_get_filtred()">
       </div>
       <div class="library__frms-grp lib-wicn_r lib-last lib-frst">
         <i class="fi fi-rr-angle-small-down"></i>
@@ -173,7 +169,11 @@
                   @if (record.is_active) { <span class="published">Published</span> } @else { <span class="draft">Draft</span> }
                 </div>
               </div>
-              <h1>{{record.name_en}} <span class="lib-sku"><b>ISBN 10</b>{{record.isbn_10}}</span><span class="lib-sku"><b>ISBN 13</b>{{record.isbn_13}}</span></h1>
+              <h1>
+                {{record.name_en}} 
+                <span class="lib-sku"><b>ISBN 10</b>{{record.isbn_10}}</span>
+                @if (record.isbn_13) { <span class="lib-sku"><b>ISBN 13</b>{{record.isbn_13}}</span> }
+              </h1>
               <div class="library__flex lib-between">
                 <div class="library__flex">
                   <button class="library__btns lib-circle lib-edit" ngbTooltip="{{'Edit'}}" routerLink="/books/edit/{{record.id}}"><i class="fi fi-rr-pencil"></i></button>

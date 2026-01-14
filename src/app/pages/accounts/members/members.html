@@ -4,13 +4,27 @@
             @if (library_errors_msg) {<div class="library__notes"><i class="fi fi-rr-triangle-warning"></i> {{library_errors_msg}}</div>}
             <div class="library__frms-cols">
                 <div class="library__frms-grp">
-                <label for="display_name">Display Name</label>
-                <input id="display_name" [(ngModel)]="model.display_name" placeholder="Display Name" name="display_name" type="text" required>
+                    <label for="first_name">First Name</label>
+                    <input id="first_name" [(ngModel)]="model.first_name" placeholder="First Name" name="first_name" type="text" required>
                 </div>
                 <div class="library__frms-grp">
-                <label for="email">Email</label>
-                <input id="email" [(ngModel)]="model.email" placeholder="Email address" name="email" type="email" required>
+                    <label for="last_name">Last Name</label>
+                    <input id="last_name" [(ngModel)]="model.last_name" placeholder="Last Name" name="last_name" type="text" required>
                 </div>
+            </div>
+            <div class="library__frms-cols">
+                <div class="library__frms-grp">
+                    <label for="display_name">Display Name</label>
+                    <input id="display_name" [(ngModel)]="model.display_name" placeholder="Display Name" name="display_name" type="text" required>
+                </div>
+                <div class="library__frms-grp">
+                    <label for="email">Email</label>
+                    <input id="email" [(ngModel)]="model.email" placeholder="Email address" name="email" type="email" required>
+                </div>
+            </div>
+            <div class="library__frms-grp">
+                <label for="username">Username</label>
+                <input id="username" [(ngModel)]="model.username" placeholder="Username" name="username" type="text" (ngModelChange)="library_edit_record.username = library_to_username($event)" required>
             </div>
             <div class="library__frms-grp library__frms-tgl">
                 <label for="is_active">

@@ -28,7 +28,7 @@ export class BooksAdd {
   public library_errors_msg: string = '';
 
   // Library:: Tabs
-  public library_tab : string = 'Description';
+  public library_tab : string = 'Info';
   library_chenge_tab(data: string): void { this.library_tab = data; }
 
   // Library:: Toeast
@@ -47,8 +47,8 @@ export class BooksAdd {
   private library_init_record(){
   this.library_create_record = {
       id: 0,
-      name_en: '', name_fr: '', name_ar: '',
-      description_en: '', description_fr: '', description_ar: '',
+      name_en: '',
+      description_en: '',
       cover_url: '',
       //
       isbn_10: '',
@@ -65,11 +65,6 @@ export class BooksAdd {
       //
       sub_categories: [],
       authors: [],
-      paperback: {
-        amazon: '',
-        barnes: '',
-        bookshop: '',
-      },
       //
       is_active: true,
     };
@@ -78,17 +73,13 @@ export class BooksAdd {
   // Library:: Valid
   get library_validate(): boolean {
     return (
-      !this.library_create_record.name_en || !this.library_create_record.name_ar || !this.library_create_record.name_fr ||
-      !this.library_create_record.description_en || !this.library_create_record.description_fr || !this.library_create_record.description_ar ||
+      !this.library_create_record.name_en ||
+      !this.library_create_record.description_en ||
       !this.library_create_record.cover_url ||
-      //
-      !this.library_create_record.isbn_10 ||
-      !this.library_create_record.isbn_13 ||
       //
       !this.library_create_record.id_year ||
       !this.library_create_record.id_lang ||
       //
-      !this.library_create_record.volume || 
       !this.library_create_record.publishing ||
       !this.library_create_record.pages ||
       !this.library_create_record.edition ||
@@ -123,7 +114,6 @@ export class BooksAdd {
   public library_years: any = [];
   public library_langs: any = [];
   public library_series: any = [];
-  public library_paperback: any = [];
   ngOnInit(): void {
     this.library_init_record();
   }

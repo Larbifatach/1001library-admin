@@ -34,7 +34,7 @@ export class Options extends LibraryCrud {
     super(_library_api, _library_toastr, _library_modals, _library_pagination);
     this.library_path = 'options';
   }
-
+  
   // Library:: Valid Edit 
   public library_valid(): boolean {
     if (!this.library_edit_record.value || typeof this.library_edit_record.value !== 'object') {
