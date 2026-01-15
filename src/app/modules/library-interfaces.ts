@@ -46,6 +46,10 @@ export interface Year {
     // 
     name: string,
 }
+export interface Publisher {
+    id: number,
+    name: string,
+}
 export interface Lang {
     id: number,
     // 
@@ -73,6 +77,7 @@ export interface Book {
     isbn_13: string,
     //
     id_year: number | null,
+    id_publisher: number | null,
     id_lang: number | null,
     id_series: number | null,
     //
@@ -80,7 +85,6 @@ export interface Book {
     authors: any,
     //
     volume: string,
-    publishing: string,
     pages: string,
     edition: string,
     //
@@ -90,12 +94,8 @@ export interface Author {
     id: number,
     // 
     name_en: string,
-    name_fr: string,
-    name_ar: string,
     // 
     description_en: string,
-    description_fr: string,
-    description_ar: string,
     avatar_url: string,
 }
 

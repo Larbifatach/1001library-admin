@@ -19,6 +19,7 @@ export const appRoutes: Routes = [
   { path: 'subcategories', loadChildren: () => import('./pages/elems/subcategories/subcategories.routes').then(m => m.routes), canActivate : [LibraryGuard] },
   { path: 'languages', loadChildren: () => import('./pages/elems/langs/langs.routes').then(m => m.routes), canActivate : [LibraryGuard] },
   { path: 'years', loadChildren: () => import('./pages/elems/years/years.routes').then(m => m.routes), canActivate : [LibraryGuard] },
+  { path: 'publishers', loadChildren: () => import('./pages/elems/publishers/publishers.routes').then(m => m.routes), canActivate : [LibraryGuard] },
   { path: 'series', loadChildren: () => import('./pages/elems/series/series.routes').then(m => m.routes), canActivate : [LibraryGuard] },
 
   // Library:: Content

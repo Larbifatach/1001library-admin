@@ -48,8 +48,8 @@
                                 <input name="volume" id="volume" [(ngModel)]="library_edit_record.volume" placeholder="{{ 'Volume, EX: 1' }}" type="text">
                             </div>
                             <div class="library__frms-grp">
-                                <label for="publishing">{{ 'Publishing' }}</label>
-                                <input name="publishing" id="publishing" [(ngModel)]="library_edit_record.publishing" placeholder="{{ 'Publishing, EX: 1990' }}" type="text">
+                                <label for="publishing">{{ 'Publisher' }}</label>
+                                <input name="publishing" id="publishing" [(ngModel)]="library_edit_record.publishing" placeholder="{{ 'Publisher, EX: Catharina Maura' }}" type="text">
                             </div>
                             <div class="library__frms-grp">
                                 <label for="pages">{{ 'Pages' }}</label>
@@ -109,6 +109,18 @@
                         [library_is_multi]="false"
                         library_value_key="id"
                         library_placeholder="{{'Search in years'}}">
+                    </library-selects>
+                </div>
+                <div class="library__frms-grp">
+                    <label for="publishers">{{'Publisher'}}</label>
+                    <library-selects
+                        library_path="all-publishers"
+                        [(library_value)]="library_edit_record.id_publisher"
+                        [library_preload]="library_publisher"
+                        library_label_key="name"
+                        [library_is_multi]="false"
+                        library_value_key="id"
+                        library_placeholder="{{'Search in publishers'}}">
                     </library-selects>
                 </div>
                 <div class="library__frms-grp">

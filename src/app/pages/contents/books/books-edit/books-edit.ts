@@ -56,11 +56,10 @@ export class BooksAdd {
       !this.library_edit_record.cover_url ||
       //
       !this.library_edit_record.id_year ||
+      !this.library_edit_record.id_publisher ||
       !this.library_edit_record.id_lang ||
       //
-      !this.library_edit_record.publishing ||
       !this.library_edit_record.pages ||
-      !this.library_edit_record.edition ||
       //
       this.library_edit_record.sub_categories.length === 0 ||
       this.library_edit_record.authors.length === 0
@@ -94,6 +93,7 @@ export class BooksAdd {
   public library_sub_categories: any = [];
   public library_authors: any = [];
   public library_year: any = {};
+  public library_publisher: any = {};
   public library_lang: any = {};
   public library_series: any = {};
   //
@@ -105,19 +105,20 @@ export class BooksAdd {
       this.library_edit_record = { 
         ...this.library_book,
         id_year: this.library_book.year?.id,
+        id_publisher: this.library_book.publisher?.id,
         id_lang: this.library_book.lang?.id,
         id_series: this.library_book.series?.id,
         authors: this.library_book.authors ? this.library_book.authors.map((s: any) => s.id) : [],
         sub_categories: this.library_book.sub_categories ? this.library_book.sub_categories.map((s: any) => s.id) : []
       };
       this.library_year = this.library_book.year ? [this.library_book.year] : [];
+      this.library_publisher = this.library_book.publisher ? [this.library_book.publisher] : [];
       this.library_lang = this.library_book.lang ? [this.library_book.lang] : [];
       this.library_series = this.library_book.series ? [this.library_book.series] : [];
       this.library_sub_categories = this.library_book.sub_categories || [];
       this.library_authors = this.library_book.authors || [];
       // 
       this.library_loading = false;
-      console.log(this.library_edit_record)
     });
   }
   ngOnInit(): void {

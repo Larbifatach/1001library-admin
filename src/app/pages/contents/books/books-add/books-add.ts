@@ -55,11 +55,11 @@ export class BooksAdd {
       isbn_13: '',
       //
       id_year: null,
+      id_publisher: null,
       id_lang: null,
       id_series: null,
       //
       volume: '',
-      publishing: '',
       pages: '',
       edition: '',
       //
@@ -78,11 +78,10 @@ export class BooksAdd {
       !this.library_create_record.cover_url ||
       //
       !this.library_create_record.id_year ||
+      !this.library_create_record.id_publisher ||
       !this.library_create_record.id_lang ||
       //
-      !this.library_create_record.publishing ||
       !this.library_create_record.pages ||
-      !this.library_create_record.edition ||
       //
       this.library_create_record.sub_categories.length === 0 ||
       this.library_create_record.authors.length === 0
@@ -112,6 +111,7 @@ export class BooksAdd {
   public library_sub_categories: any = [];
   public library_authors: any = [];
   public library_years: any = [];
+  public library_publishers: any = [];
   public library_langs: any = [];
   public library_series: any = [];
   ngOnInit(): void {

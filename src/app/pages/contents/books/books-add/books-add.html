@@ -47,17 +47,13 @@
                                     <input name="volume" id="volume" [(ngModel)]="library_create_record.volume" placeholder="{{ 'Volume, EX: 1' }}" type="text">
                                 </div>
                                 <div class="library__frms-grp">
-                                    <label for="publishing">{{ 'Publishing' }}</label>
-                                    <input name="publishing" id="publishing" [(ngModel)]="library_create_record.publishing" placeholder="{{ 'Publishing, EX: 1990' }}" type="text">
-                                </div>
-                                <div class="library__frms-grp">
                                     <label for="pages">{{ 'Pages' }}</label>
                                     <input name="pages" id="pages" [(ngModel)]="library_create_record.pages" placeholder="{{ 'Pages, EX: 100' }}" type="text">
                                 </div>
-                                <div class="library__frms-grp">
-                                    <label for="edition">{{ 'Edition' }}</label>
-                                    <input name="edition" id="edition" [(ngModel)]="library_create_record.edition" placeholder="{{ 'Edition, EX: 1' }}" type="text">
-                                </div>
+                            </div>
+                            <div class="library__frms-grp">
+                                <label for="edition">{{ 'Edition' }}</label>
+                                <input name="edition" id="edition" [(ngModel)]="library_create_record.edition" placeholder="{{ 'Edition, EX: 1' }}" type="text">
                             </div>
                             <div class="library__frms-grp library__frms-tgl">
                                 <label for="is_active">
@@ -108,6 +104,18 @@
                             [library_is_multi]="false"
                             library_value_key="id"
                             library_placeholder="{{'Search in years'}}">
+                        </library-selects>
+                    </div>
+                    <div class="library__frms-grp">
+                        <label for="publishers">{{'Publisher'}}</label>
+                        <library-selects
+                            library_path="all-publishers"
+                            [(library_value)]="library_create_record.id_publisher"
+                            [library_preload]="library_publishers"
+                            library_label_key="name"
+                            [library_is_multi]="false"
+                            library_value_key="id"
+                            library_placeholder="{{'Search in publishers'}}">
                         </library-selects>
                     </div>
                     <div class="library__frms-grp">
